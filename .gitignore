@@ -1,7 +1,9 @@
-# Ignore node_modules in all subdirectories
+# Ignore all node_modules folders
 **/node_modules/
 
-# Optionally ignore build output folders
+# Ignore build outputs in the frontend
+todo-app-frontend/dist/
+todo-app-frontend/build/
 
 # Ignore environment files
 **/.env
