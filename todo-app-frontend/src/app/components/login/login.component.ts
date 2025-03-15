@@ -35,6 +35,7 @@ export class LoginComponent {
     },
     error: (error) => {
       console.error('Login error', error);
+      alert('Login failed: ' + (error.error.message || 'Please check your credentials.'));
     }
   });
   }
