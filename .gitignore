@@ -2,8 +2,6 @@
 **/node_modules/
 
 # Optionally ignore build output folders
-todo-app-frontend/dist/
-todo-app-frontend/build/
 
 # Ignore environment files
 **/.env
