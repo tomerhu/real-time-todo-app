@@ -1,0 +1,87 @@
+<div class="task-container">
+  <mat-toolbar color="primary" class="login-toolbar">
+    <span class="spacer"></span>
+    <button mat-button (click)="logout()">Logout</button>
+  </mat-toolbar>
+  <mat-card>
+    <mat-card-title>My To-Do List</mat-card-title>
+    <mat-card-content>
+      <!-- Input for adding a new task -->
+      <mat-form-field appearance="fill">
+        <mat-label>New Task</mat-label>
+        <input matInput [(ngModel)]="newTaskTitle" placeholder="Enter task title">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Priority</mat-label>
+        <mat-select [(ngModel)]="newTaskPriority">
+          <mat-option value="High">High</mat-option>
+          <mat-option value="Medium">Medium</mat-option>
+          <mat-option value="Low">Low</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Due Date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="newTaskDueDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addTask()">Add Task</button>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- List of tasks -->
+  <div class="list-div">
+    <mat-list>
+      <mat-list-item *ngFor="let task of tasks" class="task-item">
+        <mat-checkbox 
+          [checked]="task.completed" 
+          (change)="toggleCompleted(task)"
+          class="task-checkbox">
+      </mat-checkbox>
+      <ng-container *ngIf="task.isEditing; else readOnlyView">
+        <ng-container *ngIf="task.clientId === currentClientId; else lockedView">
+          <div class="edit-container">
+            <input matInput [(ngModel)]="task.title" placeholder="Edit task" class="edit-input">
+            <mat-form-field appearance="fill" class="edit-priority">
+              <mat-label>Priority</mat-label>
+              <mat-select [(ngModel)]="task.priority">
+                <mat-option value="High">High</mat-option>
+                <mat-option value="Medium">Medium</mat-option>
+                <mat-option value="Low">Low</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="edit-due-date">
+              <mat-label>Due Date</mat-label>
+              <input matInput [matDatepicker]="picker" [(ngModel)]="task.dueDate" placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </ng-container>
+        <ng-template #lockedView>
+          <span class="locked-label">(Locked)</span>
+          <span class="task-title">{{ task.title }}</span>
+        </ng-template>
+      </ng-container>
+      <!-- Read-only view when not editing -->
+      <ng-template #readOnlyView>
+        <span class="task-title" [class.completed]="task.completed">{{ task.title }}</span>
+        <span>
+          <span class="priority-label">Priority: {{ task.priority }}</span>
+          <span class="due-date-label" *ngIf="task.dueDate">Due: {{ task.dueDate | date:'shortDate' }}</span>
+        </span>
+        <span *ngIf="task.completed" class="done-label">Done</span>
+      </ng-template>
+      <div class="task-actions">
+        <!-- If task is locked (isEditing is true), disable edit/delete buttons for other clients -->
+        <button mat-button color="accent" *ngIf="!task.isEditing" (click)="startEdit(task)">Edit</button>
+        <button mat-button color="warn" *ngIf="!task.isEditing" (click)="deleteTask(task)">Delete</button>
+        <!-- For the current client editing the task -->
+        <button mat-button color="primary" *ngIf="task.isEditing && task.clientId === currentClientId" (click)="saveEdit(task)">Save</button>
+        <button mat-button *ngIf="task.isEditing && task.clientId === currentClientId" (click)="cancelEdit(task)">Cancel</button>
+      </div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>

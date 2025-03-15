@@ -1,0 +1,66 @@
+.task-container {
+  margin: 20px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+  
+  .task-title {
+    font-size: 16px;
+    flex: 1;
+    margin-left: 10px;
+  }
+  
+  .task-actions {
+    display: flex;
+    gap: 8px;  /* Spacing between buttons */
+    margin-left: 8px;
+  }
+
+  .list-div {
+    margin-top: 20px;
+  }
+
+  .task-title.completed {
+    text-decoration: line-through;
+    color: gray;
+  }
+  
+  .done-label {
+    margin-left: 8px;
+    font-size: 14px;
+    color: green;  // You can choose any color you prefer
+  }
+
+  .task-details {
+    display: block;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .priority-label {
+    margin-right: 8px;
+    margin-left: 8px;
+  }
+  
+  .due-date-label {
+    font-style: italic;
+  }
+  
+  .edit-container{
+    display: contents;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .login-toolbar {
+    display: inline;
+  }
+  
