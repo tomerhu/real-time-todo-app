@@ -63,8 +63,9 @@ This application is designed to demonstrate a real-time web application with cle
    cd real-time-todo-app/todo-app-backend
 
 **2. Install dependencies:**
-```bash
+   ```bash
    npm install
+   ```bash
 
 **3. Create a .env file (at the root of the backend folder) with the following variables:**
 ```env
