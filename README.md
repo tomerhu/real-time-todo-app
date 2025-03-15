@@ -117,7 +117,7 @@ JWT-based authentication is implemented.
   * The frontend includes components for both login and registration.
   * An HTTP interceptor attaches the JWT token to every request for protected routes.
  
-### CI/CD Integration
+### CI/CD Integration (Optional)
 To showcase CI/CD skills, I have included a GitHub Actions workflow in this repository that:
 
 * Builds the project:
@@ -128,51 +128,7 @@ Executes unit tests (if present) for both the backend and frontend.
 Can be configured to deploy the app to a hosting provider.
 
 ### Sample GitHub Actions Workflow (Optional)
-I Created a file at .github/workflows/ci.yml with the following content:
-
-```yaml
-Copy
-name: CI
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '22.13.1'
-
-    - name: Install Dependencies (Backend)
-      working-directory: ./todo-app-backend
-      run: npm install
-
-    - name: Run Backend Tests
-      working-directory: ./todo-app-backend
-      run: npm test
-
-    - name: Install Dependencies (Frontend)
-      working-directory: ./todo-app-frontend
-      run: npm install
-
-    - name: Run Frontend Tests
-      working-directory: ./todo-app-frontend
-      run: npm run test -- --watch=false
-
-    - name: Build Frontend
-      working-directory: ./todo-app-frontend
-      run: ng build --prod
-```
+I Created a file at .github/workflows/ci.yml 
 This workflow can run on every push and pull request to the main branch, installing dependencies, running tests, and building the project. You can add additional steps for deployment if desired.
 
 ### Usage
