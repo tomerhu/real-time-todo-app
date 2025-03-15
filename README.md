@@ -66,3 +66,8 @@ This application is designed to demonstrate a real-time web application with cle
 ```bash
    npm install
 
+**3. Create a .env file (at the root of the backend folder) with the following variables:**
+```env
+MONGO_URI=mongodb://localhost:27017/todo
+PORT=3000
+JWT_SECRET=your-secret-key
