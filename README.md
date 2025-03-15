@@ -127,8 +127,8 @@ Executes unit tests (if present) for both the backend and frontend.
 * Deploys (optional):
 Can be configured to deploy the app to a hosting provider.
 
-### Sample GitHub Actions Workflow
-Create a file at .github/workflows/ci.yml with the following content:
+### Sample GitHub Actions Workflow (Optional)
+I Created a file at .github/workflows/ci.yml with the following content:
 
 ```yaml
 Copy
@@ -151,7 +151,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16'
+        node-version: '22.13.1'
 
     - name: Install Dependencies (Backend)
       working-directory: ./todo-app-backend
@@ -173,15 +173,20 @@ jobs:
       working-directory: ./todo-app-frontend
       run: ng build --prod
 ```
-This workflow runs on every push and pull request to the main branch, installing dependencies, running tests, and building the project. You can add additional steps for deployment if desired.
+This workflow can run on every push and pull request to the main branch, installing dependencies, running tests, and building the project. You can add additional steps for deployment if desired.
 
 ### Usage
 After setup, navigate to http://localhost:4200.
 
 * Login or Register:
-Use the provided login and registration pages.
+
+Use the provided login and registration page:
+http://localhost:4200/login
+http://localhost:4200/register
+
 * Manage Tasks:
 Add, edit (with real-time updates and locking), and delete tasks.
+
 * Logout:
 Click the logout button to clear your token and be redirected to the login page.
 
