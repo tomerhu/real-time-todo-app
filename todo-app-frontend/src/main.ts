@@ -21,6 +21,5 @@ bootstrapApplication(AppComponent, {
       { path: 'register', component: RegistrationComponent },
       { path: '', component: TaskListComponent, canActivate: [authGuard] }
     ])
-    // You can add more providers as required
   ]
 });
