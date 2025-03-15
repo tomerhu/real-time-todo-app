@@ -59,7 +59,7 @@ This application is designed to demonstrate a real-time web application with cle
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/real-time-todo-app.git
+   git clone https://github.com/tomerhu/real-time-todo-app.git
    cd real-time-todo-app/todo-app-backend
 
 **2. Install dependencies:**
