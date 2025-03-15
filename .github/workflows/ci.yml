@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22.13.1'
+
+      - name: Install Dependencies (Backend)
+        working-directory: ./todo-app-backend
+        run: npm install
+
+      - name: Run Backend Tests
+        working-directory: ./todo-app-backend
+        run: npm test
+
+      - name: Install Dependencies (Frontend)
+        working-directory: ./todo-app-frontend
+        run: npm install
+
+      - name: Run Frontend Tests
+        working-directory: ./todo-app-frontend
+        run: npm run test -- --watch=false
+
+      - name: Build Frontend
+        working-directory: ./todo-app-frontend
+        run: ng build --prod
